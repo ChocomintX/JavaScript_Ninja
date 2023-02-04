@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!-- 使用yiled操作符将执行权交给另一个生成器 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    function* WarriorGenerator() {
+        yield "Sun Tzu";
+        yield* NinjaGenerator();    // yield*将执行权交给了另一个生成器
+        yield "Gengis Khan";
+    }
+
+    function* NinjaGenerator() {
+        yield "Hattori";
+        yield "Yoshi";
+    }
+
+    for (let warrior of WarriorGenerator()) {
+        assert(warrior !== null, warrior);
+    }
+</script>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!-- 在数组任意位置删除、添加元素 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    // 创建数组
+    const ninjas = ["Yagyu", "Kuma", "Hattori", "Fuma"];
+
+    // 使用内置的splice方法从索引1开始，删除一个元素
+    let removedItems = ninjas.splice(1, 1);
+
+    assert(removedItems.length === 1,
+        "One item was removed");
+
+    // splice方法返回被删除的元素数组
+    assert(removedItems[0] === "Kuma",
+        "It's Kuma");
+
+    assert(ninjas.length === 3,
+        "There now three items in the array");
+
+    assert(ninjas[0] === "Yagyu",
+        "First item is Yagyu");
+    assert(ninjas[1] === "Hattori",
+        "Hattori is the second item");
+    assert(ninjas[2] === "Fuma",
+        "And Fuma is the last item");
+
+
+    removedItems = ninjas.splice(1, 2, "Mochizuki", "Yoshi", "Momochi");
+    assert(removedItems.length === 2,
+        "Two item was removed");
+    assert(removedItems[0] === "Hattori",
+        "Hattori was removed");
+    assert(removedItems[1] === "Fuma",
+        "Fuma was removed");
+    assert(ninjas.length === 4,
+        "We've inserted some new items");
+    assert(ninjas[0] === "Yagyu",
+        "Yagyu is still here");
+    assert(ninjas[1] === "Mochizuki",
+        "Mochizuki also");
+    assert(ninjas[2] === "Yoshi",
+        "Yoshi also");
+    assert(ninjas[3] === "Momochi",
+        "and Momochi");
+
+</script>
+
+</html>

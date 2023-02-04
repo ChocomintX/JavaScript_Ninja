@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!-- 另一个闭包的例子 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    var outerValue = "samurai";
+    var later;  // 稍后使用的空变量
+    function outerFunction() {
+        var innerValue = "ninja"    // 在函数内部声明一个值
+
+        // 声明一个内部函数，innerValue是在内部函数的作用域内
+        function innerFuntion() {
+            assert(outerValue === "samurai", "I can see the samurai.")
+            assert(innerValue === "ninja", "I can see the ninja.")
+        }
+
+        // 将内部函数的引用存储在later上
+        later = innerFuntion;
+    }
+
+    // 调用outerFunction函数，创建内部函数innerFunction，并将引用赋值给later
+    outerFunction();
+
+    // 通过later调用内部函数，我们不能直接调用内部函数，
+    // 因为他的作用域（和innerValue一起）被限制在外部函数之内
+    later();
+</script>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!-- 使用代理自动填充属性 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    function Folder() {
+        return new Proxy(this, {
+            get: (target, property) => {
+                report("Reading " + property);
+                if (!(property in target)) {
+                    target[property] = new Folder();
+                }
+                return target[property];
+            }
+        })
+    }
+
+    const rootFolder=new Folder();
+
+    // 每当访问属性时，都会执行代理方法，若该属性不存在，则创建该属性
+    try{
+        rootFolder.ninjasDir.firstNinjaDir.ninjaFile = "yoshi.txt";
+        pass("An exception wasn't raised");
+    }catch(e){
+        fail("An exception occured");
+    }
+</script>
+
+</html>

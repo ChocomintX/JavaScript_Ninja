@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!-- arguments对象作为函数参数的别名 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    function infiltrate(person) {
+        assert(person === "gardener",
+            "The person is a gardener");
+        assert(arguments[0] === "gardener",
+            "The first argument is a gardener");    // 检查person参数的值等于gardener，并作为第一个参数被传入
+
+        arguments[0] = "ninja";
+
+        assert(person === "ninja", "The person is a ninja now");
+
+        assert(arguments[0] === "ninja",
+            "The first argument is a ninja");   // 改变arguments对象的值也会改变相应的形参
+
+        person = "gardener"
+
+        assert(person==="gardener",
+            "The person is a gardener once more");
+            assert(arguments[0]==="gardener",
+            "The first argument is a gardener again");  // 这两种方式下，别名都正常工作了
+
+    }
+
+    infiltrate("gardener");
+</script>
+
+</html>

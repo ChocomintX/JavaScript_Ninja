@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!-- 解决constructor属性的问题 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    function Person() { }
+    Person.prototype.dance = function () { };
+
+    function Ninja() { }
+    Ninja.prototype = new Person();
+
+    Object.defineProperty(Ninja.prototype, "constructor", {
+        enumerable:false,
+        writable:true,
+        value:Ninja // 定义一个新的不可枚举的constructor属性，值为Ninja
+    })
+
+    var ninja = new Ninja();
+
+    // 重新建立ninja实例与Ninja构造器的联系
+    assert(ninja.constructor === Ninja, 
+        "Connection from ninja instances to Ninja constructor restablished!");
+
+    // 遍历可枚举的属性
+    for (let prop in Ninja.prototype) {
+        assert(prop === "dance", "The only enumerable property is dance!");
+    }
+
+</script>
+
+</html>

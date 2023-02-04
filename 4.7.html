@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!-- 使用构造函数来实现通用对象 -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script src="./utils.js"></script>
+<script>
+    // 构造函数创建一个对象，并在该对象也就是函数上下文上添加一个属性skulk.
+    // 这个skulk方法再次返回函数上下文，从而能让我们在函数外部检测函数上下文
+    function Ninja(){
+        this.skulk=function(){
+            return this;
+        }
+    }
+
+    var ninja1=new Ninja();
+    var ninja2=new Ninja();
+
+    assert(ninja1.skulk()===ninja1,
+        "The 1st ninja is skulking");
+    assert(ninja2.skulk()===ninja2,
+        "The 2nd ninja is skulking");
+</script>
+</html>

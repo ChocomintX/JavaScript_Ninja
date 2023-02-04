@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 使用argument参数对所有函数参数执行操作 -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    function sum() { // 完全没有任何显式定义参数的函数
+        var sum = 0;
+        for (var i = 0; i < arguments.length; i++) {
+            sum += arguments[i];
+        }
+        return sum;
+    }
+
+    assert(sum(1, 2) === 3, "We can add two numbers");
+    assert(sum(1, 2, 3) === 6, "We can add three numbers");
+    assert(sum(1, 2, 3, 4) === 10, "We can add four numbers");
+</script>
+
+</html>

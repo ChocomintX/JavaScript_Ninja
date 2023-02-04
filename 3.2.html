@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!-- 储存唯一函数集合 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    var store = {
+        nextId: 1,   //跟踪下一个要被复制的函数
+        cache: {},   //使用下一个对象作为缓存，我们可以在其中存储函数
+        add: function (fn) {
+            if (!fn.id) {
+                fn.id = this.nextId++;
+                this.cache[fn.id] = fn;
+                return true;
+            }   //仅当函数唯一时，将该函数加入缓存
+        }
+    };
+
+    function ninja(){}
+    assert(store.add(ninja),"Funtion was safely added.");
+    assert(!store.add(ninja),"But it was only added once.");
+    
+</script>
+
+</html>

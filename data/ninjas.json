@@ -1,0 +1,10 @@
+[
+    {
+        "name": "Hattori",
+        "missionsUrl": "http://127.0.0.1:5500/data/missions.json"
+    },
+    {
+        "name": "Yoshi",
+        "missionsUrl": "http://127.0.0.1:5500/data/missions.json"
+    }
+]

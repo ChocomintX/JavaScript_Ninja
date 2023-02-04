@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!-- 查找数组元素 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    const ninjas = [
+        {
+            name: "Yagyu",
+            weapon: "shuriken"
+        },
+        {
+            name: "Yoshi"
+        },
+        {
+            name: "Kuma",
+            weapon: "wakizashi"
+        }
+    ]
+
+    // find返回满足回调函数中指定条件的第一个元素,未找到则返回undefined
+    const ninjaWithWakizash = ninjas.find(ninja => ninja.weapon === "wakizashi");
+
+    assert(ninjaWithWakizash.name === "Kuma"
+        && ninjaWithWakizash.weapon === "wakizashi",
+        "Kuma is wielding a wakizashi");
+
+    const armedNinjas = ninjas.filter(ninja => "weapon" in ninja);
+
+    assert(armedNinjas.length===2,"Two armed ninjas");
+    assert(armedNinjas[0].name === "Yagyu"
+        && armedNinjas[1].name === "Kuma",
+        "Yagyu and Kuma");
+</script>
+
+</html>

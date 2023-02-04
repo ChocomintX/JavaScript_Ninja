@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!-- 模拟类数组方法 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="first">
+    <input id="second">
+</body>
+<script src="./utils.js"></script>
+<script>
+    const elems = {
+        length: 0,   // 用于模拟数组长度，存储集体中元素的数量
+        add: function (elem) {
+            Array.prototype.push.call(this, elem);
+        },
+        gather: function (id) {
+            this.add(document.getElementById(id));
+        },   // 实现通过ID查找元素并添加到集合中的方法
+        find: function (callback) {
+            return Array.prototype.find.call(this, callback);
+        }   // 复用数组的find方法，实现在集合中查找元素的方法
+    };
+
+    elems.gather("first");
+    assert(elems.length === 1 && elems[0].nodeType,
+        "Verify that we have an element in our stash");
+
+    elems.gather("second");
+    assert(elems.length === 2 && elems[1].nodeType,
+        "Verify the other insertion");
+
+    const found = elems.find(elem => elem.id === "second");
+    assert(found && found.id === "second",
+        "We've found our element");
+
+</script>
+
+</html>

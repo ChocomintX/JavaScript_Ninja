@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!-- 使用闭包模拟私有变量 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    function Ninja() {
+        // 在构造函数内声明一个变量，因为所声明的变量的作用域局限于构造函数的内部
+        // 所以它是一个“私有”变量，我们使用该变量统计Ninja佯攻的次数
+        var feints = 0
+
+        this.getFeints = () => feints;
+
+        this.feint = () => feints++;
+
+    }
+
+    var ninja1=new Ninja();
+    ninja1.feint();
+    assert(ninja1.feints===undefined,
+        "And the private data is inaccessible to us.");
+    assert(ninja1.getFeints()===1,
+        "We are able to access the internal feint count.");
+
+    var ninja2 = new Ninja();
+    assert(ninja2.getFeints()===0,
+        "The second ninja object getsits own feints variable.")
+</script>
+
+</html>

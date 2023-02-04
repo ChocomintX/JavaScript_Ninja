@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!-- 使用reduce合计数组元素 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    const numbers = [1, 2, 3, 4];
+
+    // reduce方法接收初始值，对数组每个元素执行回调函数，回调函数接收上一次回调结果以及
+    // 当前的数组元素作为参数，最后一次回调函数的结果作为reduce的结果
+    const sum = numbers.reduce((aggregated, number) => aggregated + number, 0)
+
+    assert(sum === 10, "Thesum of first four numbers is 10");
+</script>
+
+</html>

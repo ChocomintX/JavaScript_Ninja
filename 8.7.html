@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!-- 通过Proxy构造器创建代理 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    const emperor = { name: "Komei" };  // emperor是目标对象
+    const representative = new Proxy(emperor, {
+        // 通过Proxy构造器创建代理，传入对象emperor，以及包含get与set方法的对象，用于处理对象属性的读写操作
+
+        get: (target, key) => {
+            report("Reading " + key + " through a proxy");
+            return key in target ? target[key] : "Don't bother the emperor!";
+        },
+        set: (target, key, value) => {
+            report("Writing " + key + " through a proxy");
+            target[key] = value;
+        }
+    });
+
+    assert(emperor.name === "Komei", "The emperor's name is Komei");
+
+    // 分别通过目标对象和代理对象访问name属性
+    assert(representative.name === "Komei",
+        "We can get the name property through a proxy");
+
+    // 直接访问目标对象上不存在的nickname属性将返回undefined
+    assert(emperor.nickname === undefined,
+        "The emperor doesn't have a nickname ");
+
+    // 通过代理对象访问时，将会检测到nickname属性不存在，并因此返回警告
+    assert(representative.nickname === "Don't bother the emperor!",
+        "The proxy jumps in when we make inproper requests");
+
+    // 通过代理对象添加nickname属性后，分别通过目标对象和代理对象均可访问nickname属性
+    representative.nickname = "Tenno";
+    assert(emperor.nickname === "Tenno",
+        "The emperor now has a nickname");
+    assert(representative.nickname === "Tenno",
+        "The nickname is also accessible through the proxy");
+</script>
+
+</html>

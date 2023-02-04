@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!-- 实现forEach迭代方法展示如何设置函数上下文 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    // 接受两个参数，需要遍历的集合和回调函数
+    function forEach(list, callback) {
+        for (var n = 0; n < list.length; n++) {
+            callback.call(list[n], n);  // 当前遍历到的元素作为上下文
+        }
+    }
+
+    var weapons = [
+        { type: "shuriken" },
+        { type: "katana" },
+        { type: "nunchucks" }
+    ];
+
+    forEach(weapons, function (index) {
+        assert(this === weapons[index],
+            "Got the expected value of " + weapons[index].type)
+    });
+</script>
+
+</html>

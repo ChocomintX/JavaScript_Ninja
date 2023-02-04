@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!-- 使用getter和setter保护私有属性 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    function Ninja() {
+        let skillLevel; // 定义私有变量skillLevel
+
+        this.getSkillLevel = () => {
+            report("Getting skill level value")
+            return skillLevel
+        };
+        this.setSkillLevel = value => {
+            report("Modifying skillLevel property from：" + skillLevel + " to:" + value);
+            skillLevel = value;
+        }
+
+    }
+
+    const ninja = new Ninja();
+    ninja.setSkillLevel(100);
+    assert(ninja.getSkillLevel() === 100,
+        "Our ninja is as level 100!");
+</script>
+
+</html>

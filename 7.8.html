@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!-- 使用原型实现继承 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    function Person(){}
+    Person.prototype.dance=function(){};
+
+    function Ninja(){}
+    Ninja.prototype = new Person();  // 通过将Ninja的原型赋值为Person的实例实现继承
+
+    const ninja=new Ninja();
+
+    assert(ninja instanceof Ninja,"ninja receives functionality from the Ninja prototype");
+    assert(ninja instanceof Person,"... and the Person prototype");
+    assert(ninja instanceof Object,"... and the Object prototype");
+    assert(typeof ninja.dance === "function","... and can dance!");
+    
+</script>
+
+</html>

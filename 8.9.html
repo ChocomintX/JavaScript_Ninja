@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!-- 使用代理更易于在对象上添加日志 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    // 定义形参为target的函数，并使得target可以记录日志
+    function makeLoggable(target) {
+        return new Proxy(target, {
+            get: (target, property) => {
+                report("Reading " + property);
+                return target[property];
+            },  // 通过get方法实现属性读取时记录日志
+
+            set: (target, property, value) => {
+                report("Writing value  " + value + " to " + property);
+                target[property] = value;
+            }   // 通过set方法实现属性赋值时记录日志
+        })
+    }
+
+    let ninja = {
+        name: "Yoshi"
+    }
+
+    // 交付代理
+    ninja = makeLoggable(ninja);
+
+    assert(ninja.name === "Yoshi", "Our ninja Yoshi");
+    ninja.weapon = "sword";
+</script>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!-- 使用生成器函数生成一些列值 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    // 通过在关键字function后面添加*定义生成器函数
+    function* WeaponGenerator() {
+        yield "Katana";
+        yield "Wakizash";
+        yield "Kusarigama"; // 使用新的关键字yield生成独立的值
+    }
+
+    for (let weapon of WeaponGenerator()) {
+        assert(weapon != undefined, weapon);
+    }   //使用新的循环类型for-of取出生成的值序列
+</script>
+
+</html>

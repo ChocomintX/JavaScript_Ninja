@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!-- 通过函数访问私有变量，而不是通过对象访问 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    function Ninja() {
+        // 在构造函数内声明变量，作用域在函数内部，因此是一个私有变量
+        var feints = 0;
+
+        this.getFeints = () => feints;
+
+        this.feint = () => feints++;
+    }
+
+    var ninja1 = new Ninja();
+    ninja1.feint();
+
+    // 将ninja1的对象方法getFeints赋值给对象imposter
+    var imposter={};
+    imposter.getFeints=ninja1.getFeints;
+
+    // 验证我们访问ninja1的私有变量
+    assert(imposter.getFeints() === 1,
+        "The imposter has access to the feints variable!");
+
+</script>
+
+</html>

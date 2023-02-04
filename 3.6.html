@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!-- 比较箭头函数和函数表达式 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    var greet = name => "Greetings " + name;    // 定义箭头函数
+    assert(greet("Oishi") === "Greetings Oishi", "Oishi is properly greeted")
+
+    var anotherGreet = function (name) {
+        return "Greetings " + name;
+    };   // 定义函数表达式
+
+    assert(anotherGreet("Oishi") === "Greetings Oishi", "Again, Oishi is properly greeted");
+
+</script>
+
+</html>

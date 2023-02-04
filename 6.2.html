@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!-- 通过迭代器对象控制生成器 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    // 通过在关键字function后面添加*定义生成器函数
+    function* WeaponGenerator() {
+        yield "Katana";
+        yield "Wakizashi";
+    }
+
+    // 调用生成器得到一个迭代器，从而我们能够控制生成器的执行
+    const weaponGenerator = WeaponGenerator();
+
+    // 调用迭代器的next方法像生成器请求一个新值
+    const result1 = weaponGenerator.next()
+
+    // 结果为一个对象，其中包含着一个返回值
+    // 以及一个指示器告诉我们生成器是否还会生成值
+    assert(typeof result1 === "object"
+        && result1.value === "Katana"
+        && !result1.done,
+        "Katana received!");
+
+    // 再次调用next方法取得新值
+    const result2 = weaponGenerator.next();
+    assert(typeof result2 === "object"
+        && result2.value === "Wakizashi"
+        && !result2.done,
+        "Wakizashi received!");
+
+    // 当没有可执行的代码，生成器就会返回undefined值，表示已完成
+    const result3 = weaponGenerator.next();
+    assert(typeof result3 === "object"
+        && result3.value === undefined
+        && result3.done,
+        "There are no more results!");
+</script>
+
+
+</html>

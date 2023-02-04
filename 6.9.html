@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!-- 向生成器抛出异常 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    function* NinjaGenerator() {
+        try {
+            yield "Hattori";
+
+            // 此处的错误不会发生
+            fail("thie expected exception didn't occur");
+        } catch (e) {
+            // 捕获异常并检查是否符合预期
+            assert(e === "Catch this!", "Aha! We caught an exception")
+        }
+    }
+    const ninjaInterator = NinjaGenerator();
+
+    const result1 = ninjaInterator.next();
+    assert(result1.value === "Hattori", "We got Hattori");
+
+    ninjaInterator.throw("Catch this!");
+</script>
+
+</html>

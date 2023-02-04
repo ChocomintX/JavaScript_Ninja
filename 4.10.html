@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="test">Click me!</button>
+</body>
+<script src="./utils.js"></script>
+<script>
+    function Button() {
+        // 为对象赋值事件处理器的构造函数，该事件处理器反映了按钮的状态
+        // 通过这个事件处理器，我们能够跟踪按钮是否被单击
+        this.clicked = false;
+        this.click = function () {
+            // 单击事件处理器的声明函数
+            this.clicked = true;
+            assert(button.clicked, "The button has been clicked")
+        };
+    }
+    var button = new Button();
+    var elem = document.getElementById("test");
+    elem.addEventListener("click", button.click);
+   
+</script>
+
+</html>

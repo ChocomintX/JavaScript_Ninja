@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!-- 函数调用和方法调用的区别 -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script src="./utils.js"></script>
+<script>
+    function whatsMyContext(){
+        return this;
+    }   // 返回函数上下文，从而让我们能从函数外面检查函数上下文
+
+    // 作为函数被调用并将其上下文设置为window对象
+    assert(whatsMyContext()=== window,
+        "Function call on window");
+    
+    // 变量getMyThis得到了函数whats MyContext的引用
+    var getMyThis=whatsMyContext;
+
+    // 使用变量getMyThis来调用函数，该函数仍然作为函数被调用，上下文为window
+    assert(getMyThis()===window,
+        "Another funtion call in window");
+
+    var ninja1={
+        getMyThis:whatsMyContext
+    };  // 其属性getMyThis得到了whatsMyContext的引用
+
+    // 函数上下文为ninja1，这就是面向对象
+    assert(ninja1.getMyThis() === ninja1,
+        "Working with 1st ninja");
+
+    var ninja2={
+        getMyThis:whatsMyContext
+    };
+
+    // 函数上下文为ninja2
+    assert(ninja2.getMyThis() === ninja2,
+        "Working with 2nd ninja");
+</script>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!-- 观察初始化过程的优先级 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    function Ninja() {
+        this.swing = false;
+        this.swingSword = () => !this.swing;
+    }
+
+    // 定义一个与实例方法同名的方法
+    Ninja.prototype.swingSword = function () { return !this.swing };
+
+    const ninja = new Ninja();
+
+    // 实例方法会重写原型方法
+    assert(ninja.swingSword(),
+        "Called the instance method, not the prototype method.");
+</script>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!-- 在函数声明之前访问函数 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    assert(typeof fun === "function",
+        "fun is a function even though its definition isn't reached yet!");
+
+    assert(typeof myFunExp === "undefined",
+        "But we cannot access function expressions");
+
+    assert(typeof myArrow == "undefined",
+        "Nor arrow funtions");
+
+    function fun() { }
+
+    var myFunExp = function () { };
+
+    var myArrow = (x) => x;
+</script>
+
+</html>

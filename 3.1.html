@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!-- 简单的回调函数 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    var text = "Domo arigato!";
+    report("Before defining functions");
+
+    function useless(ninjaCallback) {
+        report("in useless function");
+        return ninjaCallback();
+    }   //函数定义，参数为一个回调函数，其函数体内会立即调用该回调函数
+
+    function getText() {
+        report("In getText function");
+        return text;
+    }   //简单的函数定义，仅返回一个全局变量
+
+    report("Before making all the calls");
+
+    //把getText作为回调函数传入上面的useless函数
+    assert(useless(getText) == text, "The useless function works!" + text);
+
+    report("After the calls have been made");
+</script>
+
+</html>

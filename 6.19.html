@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!-- 将生成器和promise结合起来 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    async(function* () {
+        // 返回异步结果的函数在等待异步结果返回时应当能够暂停
+        try {
+            const ninjas = yield getJSON("http://127.0.0.1:5500/data/ninjas.json");
+            const missions = yield getJSON(ninjas[0].missionsUrl);
+            const missionDescription = yield getJSON(missions[0].detailsUrl);
+        } catch (e) {
+            // Oh no,we weren't able to get the mission details
+        }
+    });
+
+    // 定义一个辅助函数，用于对我们定义的生成器执行操作
+    function async(generator) {
+        // 创建一个迭代器，进而控制生成器
+        var iterator = generator();
+
+        // 定义函数handle，用于对生成器产生的每个值进行处理
+        function handle(iteratorResult) {
+            if (iteratorResult.done) { return; }
+
+            const interatorValue = iteratorResult.value;
+
+            // 如果生成的值是一个promise，则对其注册成功和失败回调。这是异步处理的部分
+            // 如果promise成功返回，则恢复生成器的执行并传入promise的返回结果。如果遇到错误
+            // 向生成器抛出异常
+            if (interatorValue instanceof Promise) {
+                interatorValue.then(res => handle(iterator.next(res)))
+                    .catch(err => iterator.throw(err));
+            }
+        }
+
+        try {
+            handle(iterator.next());
+        } catch (e) {
+            iterator.throw(e);
+        }
+    };
+</script>
+
+</html>

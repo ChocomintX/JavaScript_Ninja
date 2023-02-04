@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!-- 显式返回对象值的构造函数 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    var puppet = {
+        rules: false
+    };  // 创建一个全局对象，该对象的rules属性设置为false
+
+    function Emperor() {
+        this.rules = true;
+        return puppet
+    }   // 初始化了传入的this对象，返回该全局对象
+
+    var emperor = new Emperor();
+
+    assert(emperor===puppet,
+        "The emperor is merely a puppet!");
+
+    // 测试表明，变量emperor的值是由构造函数返回的对象，而不是new表达式返回的对象
+    assert(emperor.rules===false,
+        "The puppet does not know how to rule!");
+    
+</script>
+
+</html>

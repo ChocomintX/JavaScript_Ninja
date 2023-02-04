@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!-- 在interval的回调函数中使用闭包 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div style="position: fixed;" id="box1">First Box</div>
+</body>
+<script src="./utils.js"></script>
+<script>
+    function animateIt(elementId) {
+        var elem = document.getElementById(elementId);
+        var tick = 0;  // 创建一个计时器用于记录动画执行的次数
+        var timer = setInterval(() => {
+            // 创建并启动一个JavaScript内置的计时器，传入一个回调函数
+            if (tick < 100) {
+                // 每隔十毫秒调用一次计时器的回调函数，调整元素的位置100次
+                elem.style.left = elem.style.top = tick + "px";
+                tick++;
+            } else {
+                clearInterval(timer);
+                assert(tick === 100, "Tick accessed via a closure.");
+                assert(elem, "Element also accessed via a closure.");
+                assert(timer, "Timer rederence also obtained via a closure.");
+            }
+        }, 10)
+    }
+    animateIt("box1");
+</script>
+
+</html>

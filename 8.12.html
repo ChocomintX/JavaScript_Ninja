@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!-- 使用代理实现负索引数组 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+
+
+
+    function createNegativeArrayProxy(array) {
+        if (!Array.isArray(array)) {
+            throw new TypeError("Expected an array")
+        }
+
+        return new Proxy(array, {
+            get: (target, index) => {
+                report("Reading index " + index);
+                index = +index; // 将属性名变成数值
+                return target[index < 0 ? target.length + index : index];
+            },
+            set: (target, index, val) => {
+                index = +index;
+                return target[index < 0 ? target.length + index : index] = val;
+            }
+        })
+    }
+
+    const ninjas = createNegativeArrayProxy(["Yoshi", "Hattori", "Kuma"]);
+
+    report(ninjas[-1]);
+    ninjas[-3] = "Sasuke"
+    report(ninjas[0]);
+
+</script>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 箭头函数与对象字面量 -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="test">Click me!</button>
+</body>
+<script src="./utils.js"></script>
+<script>
+    assert(this === window, "this===window");
+
+    var button = {    // 使用对象字面量定义button
+        clicked: false,
+        click: () => {  // 箭头函数是对象字面量的属性
+            this.clicked = true;
+            // 验证是否单击按钮
+            assert(button.clicked, "The button has been clicked")
+
+            // 箭头函数中的this指向全局window对象
+            assert(this === window, "In arrow function this===window");
+
+            // clicked属性存储在window对象上
+            assert(window.clicked, "Clicked is stored in window");
+        }
+    }
+    var elem = document.getElementById("test");
+    elem.addEventListener("click", button.click);
+
+</script>
+
+</html>

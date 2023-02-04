@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!-- 使用严格模式避免使用arguments别名 -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script src="./utils.js"></script>
+<script>
+    "use strict"    // 开启严格模式
+
+    function infiltrate(person) {
+        assert(person === "gardener",
+            "The person is a gardener");
+        assert(arguments[0] === "gardener",
+            "The first argument is a gardener");    // 检查person参数的值等于gardener，并作为第一个参数被传入
+
+        arguments[0] = "ninja"; // 改变第一个参数
+
+        assert(arguments[0] === "ninja",
+            "The first argument is a ninja now");   // 改变arguments对象的值也会改变相应的形参
+
+        assert(person === "gardener", "The person is still a gardener");
+    }
+    
+    infiltrate("gardener");
+</script>
+</html>

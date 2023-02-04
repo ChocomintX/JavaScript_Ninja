@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!-- 对象可以通过原型访问其他对象的属性 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    const yoshi = { skulk: true };
+    const hattori = { sneak: true };
+    const kuma = { creep: true };
+
+    assert("skulk" in yoshi, "Yoshi can skulk!");
+    assert(!("sneak" in yoshi), "Yoshi cannot sneak!");
+    assert(!("creep" in yoshi), "Yoshi cannot creep!"); // yoshi只能访问自身的skulk
+
+    // Object.setPrototypeOf方法，将对象hattori设置为yoshi对象的原型
+    Object.setPrototypeOf(yoshi, hattori);
+
+    // 现在yoshi可以访问hattori对象的属性
+    assert("sneak" in yoshi, "Yoshi can sneak now!");
+
+    // 目前hattori对象还不具有creep
+    assert(!("creep" in hattori), "Hattori cannot creep");
+
+    Object.setPrototypeOf(hattori, kuma);
+
+    // 现在hattori可以访问kuma对象的属性
+    assert("creep" in hattori, "Hattori can creep now!");
+
+    // 现在yoshi可以访问kuma对象的属性
+    assert("creep" in yoshi, "Yoshi can creep now!");
+</script>
+
+</html>

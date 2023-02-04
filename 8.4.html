@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!-- 通过Object.defineProperty定义getter和setter -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    function Ninja() {   // 定义构造函数
+        let _skillLevel = 0;    // 定义私有变量，将通过闭包访问该变量
+        
+        Object.defineProperty(this, "skillLevel", {
+            get: () => {
+                report("The get method is called");
+                return _skillLevel;
+            },  // 访问属性skillLevel时将调用get
+            set: value => {
+                report("The set method is called");
+                _skillLevel = value;
+            }   // 对属性skillLevel赋值时将调用set
+        })
+    }
+
+    const ninja = new Ninja();
+
+    assert(typeof ninja._skillLevel === "undefined",
+        "We cannot access a \"private\" property");
+
+    // 只能通过getter访问
+    assert(ninja.skillLevel === 0,
+        "The getter works fine!");
+
+    // 隐式调用set方法
+    ninja.skillLevel = 10;
+    
+    assert(ninja.skillLevel === 10,
+        "The value was updated");
+</script>
+
+</html>

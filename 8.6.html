@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!-- 定义如何计算属性 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    const shogun = {
+        name: "Yoshiaki",
+        clan: "Ashikaga",
+
+        get fullTitle() {
+            return this.name + " " + this.clan;
+        },   //拼接两个属性并返回
+
+        set fullTitle(value) {
+            const segements = value.split(" ");
+            this.name = segements[0];
+            this.clan = segements[1];
+        }
+    }
+
+    // name与clan为普通属性，fullTitle调用get方法
+    assert(shogun.name ==="Yoshiaki","Our shogun Yoshiaki");
+    assert(shogun.clan ==="Ashikaga","of clan Ashikaga");
+    assert(shogun.fullTitle ==="Yoshiaki Ashikaga",
+        "The full name is now Yoshiaki Ashikaga");
+
+    // 调用setter计算后分别赋值给name与clan属性
+    shogun.fullTitle = "Ieyasu Tokugawa";
+    assert(shogun.name ==="Ieyasu","Our shogun Ieyasu");
+    assert(shogun.clan ==="Tokugawa","of clan Tokugawa");
+    assert(shogun.fullTitle ==="Ieyasu Tokugawa",
+        "The full name is now Ieyasu Tokugawa");
+</script>
+
+</html>

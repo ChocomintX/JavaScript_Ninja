@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 使用箭头函数解决回调函数上下文问题 -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="test">Click me!</button>
+</body>
+<script src="./utils.js"></script>
+<script>
+    function Button() {
+        this.clicked = false;
+        this.click = () => {
+            // 单击事件处理器的箭头函数
+            this.clicked = true;
+            assert(button.clicked, "The button has been clicked")
+        };
+    }
+    var button = new Button();
+    var elem = document.getElementById("test");
+    elem.addEventListener("click", button.click);
+
+</script>
+
+</html>

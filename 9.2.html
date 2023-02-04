@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!-- 添加、删除数组元素 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    // 创建空数组
+    const ninjas = [];
+    assert(ninjas.length === 0, "An array starts empty");
+
+    // 在数组末尾添加一个元素
+    ninjas.push("Kuma");
+    assert(ninjas[0] === "Kuma",
+        "Kuma is the first item in the array");
+    assert(ninjas.length === 1, "We have one item in the array");
+
+    // 在数组末尾添加第二个元素
+    ninjas.push("Hattori");
+    assert(ninjas[0] === "Kuma",
+        "Kuma is still first");
+    assert(ninjas[1] === "Hattori",
+        "Hattori is added to the end of the array");
+    assert(ninjas.length === 2, "We have two item in the array!");
+
+
+    // 在数组头部添加元素
+    ninjas.unshift("Yagyu");
+    assert(ninjas[0] === "Yagyu",
+        "Now Yagyu is the first item");
+    assert(ninjas[1] === "Kuma",
+        "Kuma moved to the second place");
+    assert(ninjas[2] === "Hattori",
+        "And Hattori moved to the third place");
+    assert(ninjas.length === 3, "We have three item in the array!");
+
+    // 从数组末尾移除元素
+    const lastNinja = ninjas.pop();
+    assert(lastNinja === "Hattori",
+        "We've removed Hattori from the end of the array");
+    assert(ninjas[0] === "Yagyu",
+        "Now Yagyu is still the first item");
+    assert(ninjas[1] === "Kuma",
+        "Kuma is still in second item");
+    assert(ninjas.length === 2, "Now there is three item in the array!");
+
+    // 从数组开头移除元素
+    const firstNinja = ninjas.shift();
+    assert(firstNinja === "Yagyu",
+        "We've removed Yagyu from the beginning of the array");
+    assert(ninjas[0] === "Kuma",
+        "Kuma has shifted to the first place");
+    assert(ninjas.length === 1, "There is only one ninja in the array");
+</script>
+
+</html>

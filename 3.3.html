@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!-- 计算先前得到的值 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    function isPrime(value) {
+        if (!isPrime.answers) {
+            isPrime.answers = {};
+        }   //创建缓存
+
+        if (isPrime.answers[value] !== undefined) {
+            return isPrime.answers[value];
+        }   //检查缓存的值
+
+        var prime = value !== 0 && value !== 1; //1 not a prime
+        for (var i = 2; i < value; i++) {
+            if (value % i === 0) {
+                prime = false;
+                break;
+            }
+        }
+        // 储存计算的值
+        return isPrime.answers[value] = prime;
+    }
+
+    assert(isPrime(5), "5 is prime!")
+    assert(isPrime.answers[5], "The answer was cached!")
+
+</script>
+
+</html>

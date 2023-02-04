@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!-- 使用const与let关键字 -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script src="./utils.js"></script>
+<script>
+    const GLOCAL_NINJA = "Yoshi";
+
+    function reportActivity() {
+        // 使用关键字const定义函数内部的局部变量
+        const functionActivity = "jumping";
+
+        for (let i = 1; i < 3; i++) {
+            let forMessage = GLOCAL_NINJA + " " + functionActivity;
+            // 在for循环中可以访问块级变量，函数内的局部变量，以及全局变量
+            assert(forMessage === "Yoshi jumping",
+                "Yoshi is jumping within the for block");
+
+            assert(i, "Current loop counter:" + i);
+        }
+
+        // 现在for循环外部，不能访问for循环中定义的变量
+        assert(typeof i === "undefined" && typeof forMessage === "undefined",
+            "Loop variables not accessible outside of the loop");
+    }
+
+    reportActivity();
+
+    // 函数外部也无法访问函数内部的局部变量
+    assert(typeof functionActivity === "undefined"
+        && typeof i === "undefined" && typeof forMessage === "undefined",
+        "We cannot see function variables outside of a function");
+
+</script>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!-- 探讨instanceof操作符 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    function Person() { }
+    function Ninja() { }
+
+
+    Ninja.prototype = new Person();
+
+    const ninja = new Ninja();
+
+    assert(ninja instanceof Ninja,
+        "Our ninja is a Ninja!");
+
+    assert(ninja instanceof Person,
+        "Our ninja is also a Person!");
+
+</script>
+
+</html>

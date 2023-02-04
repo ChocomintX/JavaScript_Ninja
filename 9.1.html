@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!-- 创建数组 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    // 分别使用数组字面量和构造函数创建数组
+    const ninjas = ["Kuma", "Hattori", "Yagyu"];
+    const samurai = new Array("Oda", "Tomoe");
+
+    assert(ninjas.length === 3, "There are three ninjas");
+    assert(samurai[samurai.length - 1] === "Tomoe", "Tomoe is the last samurai");
+
+    assert(ninjas[4] === undefined,
+        "We get undefined if we try to access an out of bounds index");
+
+    // 对超出数组边界的索引写入元素将扩充数组
+    ninjas[4] = "Ishi";
+    assert(ninjas.length === 5,
+        "Arraya are automatically expanded");
+
+    // 手动修改length为更小数值，将会删除多余的元素
+    ninjas.length = 2;
+    assert(ninjas.length === 2, "There only two ninjas now");
+    assert(ninjas[0] === "Kuma" && ninjas[1] === "Hattori", "Kuma and Hattori");
+    assert(ninjas[2] === undefined, "But we've lost Yagyu");
+</script>
+
+</html>

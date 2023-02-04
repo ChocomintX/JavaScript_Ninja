@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!-- 当心构造函数原型的改变 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    function Ninja() { }
+    const ninja = new Ninja();
+
+    assert(ninja instanceof Ninja,"Our ninja is a Ninja!");
+
+    Ninja.prototype = {};
+
+    // 虽然ninja仍然是由Ninja构造器创建的，但instanceof操作符结果显示不是Ninja的实例
+    assert(!(ninja instanceof Ninja),"The ninja is not a Ninja!?");
+
+</script>
+
+</html>

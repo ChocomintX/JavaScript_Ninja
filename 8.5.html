@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!-- 通过setter校验赋值 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    function Ninja() {   // 定义构造函数
+        let _skillLevel = 0;    // 定义私有变量，将通过闭包访问该变量
+
+        Object.defineProperty(this, "skillLevel", {
+            get: () => _skillLevel,  // 访问属性skillLevel时将调用get
+            set: value => {
+                if(!Number.isInteger(value)){
+                    throw new TypeError("Skill level should be a number");
+                }
+                _skillLevel = value;
+            }   // 对属性skillLevel赋值时将调用set
+        })
+    }
+
+    const ninja = new Ninja();
+
+    // 我们可以将整型值赋值给属性skillLevel
+    ninja.skillLevel = 10;
+
+    assert(ninja.skillLevel === 10,
+        "The value was updated");
+
+    // 试图将非整型赋值给属性skillLevel则会从setter抛出异常
+    try{
+        ninja.skillLevel = "Great";
+        fail("Should not be here");
+    }catch(e){
+        pass("Setting a non-integer value throws an exception")
+    }
+</script>
+
+</html>

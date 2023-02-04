@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!-- 返回原始值的构造函数 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    function Ninja() {
+        this.skulk = function () {
+            return this;
+        }
+
+        return 1;   //返回一个确定值
+    }
+
+    // 该函数以函数的形式被调用，正如预期，其返回值为数字1
+    assert(Ninja() === 1,
+        "Return value honored when not called as a constructor");
+
+    // 构造函数形式被调用
+    var ninja = new Ninja();
+
+    assert(typeof ninja === "object",
+        "Object returned when called as a constructor");
+
+    // 测试表明，返回值1被忽略了，一个新的被初始化的对象被关键字new所返回
+    assert(typeof ninja.skulk === "function",
+        "ninja object has a skulk method");
+</script>
+
+</html>

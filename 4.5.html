@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!-- 函数调用的方式 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    function ninja() {
+        return this;
+    }   // 非严格模式下的函数
+
+    function samurai() {
+        "use strict"
+        return this;
+    }   // 严格模式下的函数
+
+    assert(ninja() === window,
+        "In a 'nonstrict' ninja function" +
+        "the context is the global window object");
+
+    assert(samurai() === undefined,
+        "In a 'strict' samurai function" +
+        "the context is undefined");
+
+    
+</script>
+
+</html>

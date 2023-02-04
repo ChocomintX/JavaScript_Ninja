@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!-- 向生成器发送数据以及从生成器接收数据 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    function* NinjaGenerator(action) {
+        // 生成器可以像其他函数一样接收标准参数
+
+        // 奇迹出现了。产生一个值的同时，生成器会返回一个
+        // 中间计算结果。通过带有参数的调用迭代器的next方法，
+        // 我们可以将数据传递回生成器
+        const imposter = yield ("Hattori " + action);
+
+        assert(imposter === "Hanzo",
+            "The generator has been infiltrated");
+
+        // 传递回的值将成为yield表达式的返回值，因此imposter为Hanzo
+        yield ("Yoshi (" + imposter + ") " + action);
+    }
+
+    const ninjaInterator = NinjaGenerator("skulk");
+
+    const result1 = ninjaInterator.next();
+
+    // 触发生成器的执行，并检测返回值是否正确
+    assert(result1.value === "Hattori skulk", "Hattori is skulking");
+
+    const result2 = ninjaInterator.next("Hanzo");
+
+    // 将数据作为next方法的参数传递给生成器，并检测返回是否符合预期
+    assert(result2.value === "Yoshi (Hanzo) skulk",
+        "We have an imposter!");
+</script>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!-- 仔细研究promise的执行顺序 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    report("At code start");
+
+    var ninjaDelayedPromise = new Promise((resolve,reject)=>{
+        // 调用Promise函数来立即调用传入的参数
+        report("ninjaDelayedPromise executor");
+
+        // 在500ms之后，为promise调用resolve方法表明承诺已成功完成
+        setTimeout(() => {
+            report("Resolving ninjaDelayPromise");
+            resolve("Hattori");
+        }, 500);
+    })
+
+    assert(ninjaDelayedPromise !== null,
+        "After creating ninjaDelayedPromise");
+    
+    // then方法创建一个承诺兑现后的回调函数，计时器超时后执行
+    ninjaDelayedPromise.then(ninja=>{
+        assert(ninja === "Hattori",
+            "ninjaDelayedPromise resolve handled with Hattori");
+    })
+
+    const ninjaImmediatePromise = new Promise((resolve,reject)=>{
+        // 创建一个新的Promise对象并立刻resolve
+        report("ninjaImmediatePromise executor.Immediate resolve.");
+        resolve("Yoshi");
+    })
+
+    // 创建一个回调函数，当promise调用resolve方法后执行
+    // 但我们的promise已经调用过resolve方法了
+    ninjaImmediatePromise.then(ninja=>{
+        assert(ninja === "Yoshi",
+            "ninjaImmediatePromise resolve handled with Yoshi");
+    })
+
+    report("At code end");
+</script>
+
+</html>

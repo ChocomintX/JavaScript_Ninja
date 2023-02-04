@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!-- 引用前一个默认参数 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    // 我们可以把任意表达式作为默认参数值，在这个过程中甚至可以引用前面的参数
+    function performAction(ninja, action = "skulking", message = ninja + " " +action) {
+        return message;
+    }
+
+    assert(performAction("Yoshi") === "Yoshi skulking", "Yoshi is skulking");
+    
+</script>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!-- 使用关键字var -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    // var声明的变量实际上总是在距离最近的函数内或全局词法环境中注册的，不关注块级作用域
+    
+    var globalNinja = "Yoshi";    // 使用关键字var定义全局变量
+    function reportActivity() {
+        // 使用关键字var定义函数内部的局部变量
+        var functionActivity = "jumping";
+
+        for (var i = 1; i < 3; i++) {
+            var forMessage = globalNinja + " " + functionActivity;
+            // 在for循环中可以访问块级变量，函数内的局部变量，以及全局变量
+            assert(forMessage === "Yoshi jumping",
+                "Yoshi is jumping within the for block");
+
+            assert(i, "Current loop counter:" + i);
+        }
+
+        // 但是在for循环外部，仍然能访问for循环中定义的变量
+        assert(i === 3 && forMessage === "Yoshi jumping",
+            "Loop variables accessible outside of the loop");
+    }
+
+    reportActivity();
+
+    // 函数外部无法访问函数内部的局部变量
+    assert(typeof functionActivity === "undefined"
+        && typeof i === "undefined" && typeof forMessage === "undefined",
+        "We cannot see function variables outside of a function");
+
+</script>
+
+</html>

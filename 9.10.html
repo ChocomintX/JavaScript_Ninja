@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!-- 查找数组索引 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    const ninjas = ["Yagyu", "Yoshi", "Hattori", "Yoshi"];
+
+    assert(ninjas.indexOf("Yoshi") === 1, "Yoshi is at index 1");
+    assert(ninjas.lastIndexOf("Yoshi") === 3, "And at last index 3");
+
+    const yoshiIndex = ninjas.findIndex(ninja => ninja === "Yoshi");
+    assert(yoshiIndex === 1, "Yoshi is still at index 1");
+</script>
+
+</html>

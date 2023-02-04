@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!-- 在ES6中的静态方法 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    class Ninja {
+        constructor(name, level) {
+            this.name = name;
+            this.level = level;
+        }
+
+        swingSword() {
+            return true;
+        }
+
+        static compare(ninja1, ninja2) {
+            return ninja1.level - ninja2.level;
+        }   // 使用关键字static创建静态方法
+
+    }
+
+    let ninja1 = new Ninja("Yoshi", 4);
+    let ninja2 = new Ninja("Hattori", 3);
+
+    assert(!("compare" in ninja1) && !("compare" in ninja2),
+        "A ninja instance doesn't know how to compare");
+
+    assert(Ninja.compare(ninja1, ninja2) > 0,
+        "The Ninja class can do the comparison!");
+
+    assert(!("swingSword" in Ninja),
+        "The Ninja class cannot swing a sword");
+</script>
+
+</html>

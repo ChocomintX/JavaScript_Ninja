@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!-- 创建一个简单的promise -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    const ninjaPromise = new Promise((resolve, reject) => {
+        // 通过内置Promise函数可以创建一个promise对象
+        // 需要向构造函数中传入两个函数参数：resolve和reject
+        resolve("Hattori");
+        // reject("An error resolving a promise!");
+    })
+
+    // promise兑现后调用第一个回调函数，否则第二个
+    ninjaPromise.then(ninja => {
+        assert(ninja === "Hattori", "We were promised Hattori!");
+    }, err => {
+        fail("Threr shouldn't be an error")
+    })
+</script>
+
+</html>

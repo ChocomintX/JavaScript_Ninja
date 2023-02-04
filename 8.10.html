@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!-- 使用代理评估性能 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    function isPrime(number) {
+        if (number < 2) {
+            return false;
+        }
+
+        for (let i = 2; i < number; i++) {
+            if (number % i === 0) {
+                return false;
+            }
+        }
+    }
+
+    // 使用代理包装isPrime方法
+    isPrime = new Proxy(isPrime, {
+        // 当代理对象作为函数被调用时会触发该方法执行
+        apply: (target, thisArg, args) => {
+            report(thisArg+","+args+",")
+            console.time("isPrime");
+
+            // 调用目标函数
+            const result = target.apply(thisArg, args);
+
+            console.timeEnd("isPrime");
+
+            return result;
+        }
+    })
+
+    isPrime.apply(1299827);
+</script>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!-- 映射数组 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    const ninjas = [
+        {
+            name: "Yagyu",
+            weapon: "shuriken"
+        },
+        {
+            name: "Yoshi",
+            weapon: "katana"
+        },
+        {
+            name: "Kuma",
+            weapon: "wakizashi"
+        }
+    ]
+
+    // 内置的map方法接受回调函数作为参数，并对数组的每个元素执行该函数
+    const weapons = ninjas.map(ninja => ninja.weapon);
+
+    assert(weapons[0] === "shuriken"
+        && weapons[1] === "katana"
+        && weapons[2] === "wakizashi"
+        && weapons.length === 3,
+        "The new array contains all weapons");
+</script>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!-- 不使用代理实现日志记录 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    function Ninja(){
+        let _skillLevel=0;
+        Object.defineProperty(this,"skillLevel",{
+            get:()=>{
+                report("skillLevel get method is called");
+                return _skillLevel;
+            },
+            set:value=>{
+                report("skillLevel set method is called");
+                _skillLevel=value;
+            }
+        })
+    }
+
+    const ninja=new Ninja();
+
+    ninja.skillLevel;
+    ninja.skillLevel=4;
+</script>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!-- ES6之前处理默认参数的方式 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    function performAction(ninja, action) {
+        // action的值为undefined，则使用默认参数skulking
+        action = typeof action === "undefined" ? "skulking" : action;
+        return ninja + " " + action
+    }
+
+    assert(performAction("Fuma")==="Fuma skulking", "The default value is used for Fuma");
+
+    assert(performAction("Yoshi")==="Yoshi skulking", "The default value is used for Yoshi");
+    
+    assert(performAction("Hattori")==="Hattori skulking", "The default value is used for Hattori");
+    
+    assert(performAction("Yagyu","sneaking")==="Yagyu sneaking", "Yagyu can do whatever hepleases, even sneak!");
+    
+</script>
+
+</html>

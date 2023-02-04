@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!-- const变量的行为 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    const firstConst = "samurai";
+
+    // 定义const变量并赋值
+    assert(firstConst === "samurai",
+        "firstConst is a samurai");
+
+    try {
+        firstConst = "ninja";
+        fail("Shouldn't be here");
+    } catch (e) {
+        report("An exception has occurred");
+    }
+
+    assert(firstConst === "samurai",
+        "firstConst is still a samurai!");
+
+    const secondConst = {};   // 创建一个const变量赋值为空对象
+
+    secondConst.weapon = "wakizashi";
+    assert(secondConst.weapon === "wakizashi",
+        "We can add new properties");   // 不能赋值新对象，但可以修改属性
+
+    const thirdConst = [];
+    assert(thirdConst.length === 0,
+        "No items in our array");
+
+    thirdConst.push("Yoshi");
+    assert(thirdConst.length === 1,
+        "The array has changed");
+
+</script>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!-- 删除数组元素的粗略方法 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    // 创建空数组
+    const ninjas = ["Yagyu", "Kuma", "Hattori", "Fuma"];
+
+    delete ninjas[1];   // 使用delete操作符删除元素
+
+    assert(ninjas.length === 4,
+        "Length still reports that there are 4 items");
+
+    assert(ninjas[0] === "Yagyu",
+        "First item is Yagyu");
+    assert(ninjas[1] === undefined,
+        "We've simply created a hole"); // 虽然删除了元素的值，但是数组长度仍然为4，我们创建了一个空元素
+    assert(ninjas[2] === "Hattori",
+        "Hattori is still the third item");
+    assert(ninjas[3] === "Fuma",
+        "And Fuma is the last item");
+
+
+
+</script>
+
+</html>
