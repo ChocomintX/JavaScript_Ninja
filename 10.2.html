@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!-- 创建正则表达式的两种方法 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    const re1 = /test/i;    // 通过字面量创建
+    const re2 = new RegExp("test", "i"); // 通过构造函数创建
+
+    assert(re1.toString() === "/test/i",
+        "Verify the contents of the expression.");
+
+    assert(re1.test("TesT", "Yes, it's case-insensitive"));
+    assert(re2.test("TesT", "This one is too"));
+
+    assert(re1.toString() === re2.toString(),
+        "The regular expressions are equal");
+
+    assert(re1 !== re2,
+        "But they are different objects");
+</script>
+
+</html>

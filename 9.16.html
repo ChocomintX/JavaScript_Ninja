@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!-- 创建第一个map -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="firstElement"></div>
+    <div id="secondElement"></div>
+</body>
+<script src="./utils.js"></script>
+<script>
+    const ninjaIslandMap = new Map();
+
+    const ninja1 = { name: "Yoshi" };
+    const ninja2 = { name: "Hattori" };
+    const ninja3 = { name: "Kuma" };
+
+    // 使用set方法建立两个对象的映射关系
+    ninjaIslandMap.set(ninja1, { homeIsland: "Honshu" });
+    ninjaIslandMap.set(ninja2, { homeIsland: "Hokkaido" });
+
+    // 使用get方法获取对象
+    assert(ninjaIslandMap.get(ninja1).homeIsland === "Honshu",
+        "The first mapping works");
+    assert(ninjaIslandMap.get(ninja2).homeIsland === "Hokkaido",
+        "The second mapping works");
+
+    // 验证map中不存在第三个对象的映射
+    assert(ninjaIslandMap.get(ninja3) === undefined,
+        "There is no mapping for the third ninja!");
+
+    // 使用has方法验证是否存在key
+    assert(ninjaIslandMap.has(ninja1)
+        && ninjaIslandMap.has(ninja2)
+        && ninjaIslandMap.size() === 1,
+        "We've mappings for the first two ninjas");
+
+    assert(ninjaIslandMap.has(ninja3), "But not for the third ninja!")
+
+    // 使用delete方法删除key
+    ninjaIslandMap.delete(ninja1);
+    assert(!ninjaIslandMap.has(ninja1)
+        && ninjaIslandMap.size() === 1,
+        "There's no first ninja mapping anymore!");
+
+    // 使用cleared方法完全清空map
+    ninjaIslandMap.clear();
+    assert(ninjaIslandMap.size() === 0,
+        "All mappings have been cleared");
+</script>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!-- 使用Set执行差集 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    const ninjas = new Set(["Kuma", "Hattori", "Yagyu"]);
+    const samurai = new Set(["Hattori", "Oda", "Tomoe"]);
+
+    // 使用延展运算符将集合转换为数组，以便调用数组的filter方法
+    const pureNinjas = new Set([...ninjas].filter(ninja => !samurai.has(ninja)));
+
+    // 验证包含元素
+    assert(pureNinjas.size === 2, "There are two pure ninja");
+    assert(pureNinjas.has("Kuma"), "Kuma is a true ninja");
+    assert(pureNinjas.has("Yagyu"), "Yagyu is a true ninja");
+
+</script>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!-- 在CSS选择器中匹配转义字符 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    // 该正则表达式允许任意字符序列组成的词，包括一个反斜线紧跟任意字符
+    // （包括反斜线本身），或两者兼而有之
+    const pattern = /^((\w+)|(\\.))+$/;
+
+    // 除最后一个含有非词（:）之外，其他都通过
+    const tests = [
+        "formUpdate",
+        "form\\.update\\.whatever",
+        "form\\:update",
+        "\\f\\o\\r\\m\\u\\p\\d\\a\\t\\e",
+        "form:update"
+    ];
+
+    for (let n = 0; n < tests.length; n++) {
+        assert(pattern.test(tests[n]), tests[n] + " is a valid identifier");
+    }
+</script>
+
+</html>

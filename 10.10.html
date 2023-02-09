@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!-- 一种查询字符串压缩技术 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    function compress(source) {
+        const keys = {};  // 存储目标key
+        source.replace(
+            /([^=&]+)=([^&]*)/g,
+            function (full, key, value) {   // 提取键值对信息
+                keys[key] = (keys[key] ? keys[key] + "," : "") + value;
+                return "";
+            }
+        );
+
+        // 收集key信息
+        const result = [];
+        for (let key in keys) {
+            result.push(key + "=" + keys[key]);
+        }
+
+        // 使用符号&连接结果
+        return result.join("&");
+    }
+
+    const str = "foo=1&foo=2&blah=a&blah=b&foo=3";
+    report("source: " + str);
+    report("compress: " + compress(str));
+</script>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!-- 使用指定模式校验字符串 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    function isThisAZipCode(candidate) {
+        // 去除明显不对的候选
+        if (typeof candidate !== "string" || candidate.length !== 10)
+            return false;
+
+        // 基于字符索引执行测试
+        for (let n = 0; n < candidate.length; n++) {
+            let c = candidate[n];
+            switch (n) {
+                case 0: case 1: case 2: case 3: case 4:
+                case 6: case 7: case 8: case 9:
+                    if (c < '0' || c > '9')
+                        return false;
+                    break;
+                case 5:
+                    if (c != '-')
+                        return false;
+            }
+        }
+        return true;
+    }
+
+    report(isThisAZipCode("55555-5555"));
+    report(isThisAZipCode("5555525555"));
+
+    // 正则表达式实现
+    // function isThisZipCode(candidate){
+    //     return /^\d{5}-\d{4}$/.test(candidate);
+    // }
+</script>
+
+</html>

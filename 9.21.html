@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!-- 使用Set执行并集 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    const ninjas = new Set(["Kuma", "Hattori", "Yagyu"]);
+    const samurai = new Set(["Hattori", "Oda", "Tomoe"]);
+    
+    // 创建两个数组的并集
+    const warriors = new Set([...ninjas,...samurai]);
+
+    // 验证包含所有元素
+    assert(warriors.has("Kuma"),"Kuma is here");
+    assert(warriors.has("Hattori"),"And Hattori");
+    assert(warriors.has("Yagyu"),"And Yagyu");
+    assert(warriors.has("Oda"),"And Oda");
+    assert(warriors.has("Tomoe"),"And Tomoe,last but not least");
+
+    assert(warriors.size===5,"There 5 warriors in total");
+
+</script>
+
+</html>

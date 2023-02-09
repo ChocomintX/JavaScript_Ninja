@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!-- 遍历map -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    const directory = new Map();
+
+    directory.set("Yoshi", "+81 26 6462");
+    directory.set("Kuma", "+81 52 2378 6462");
+    directory.set("Hiro", "+81 76 277 46");
+
+    // 使用for-of遍历，每个值有key和value两个值
+    for (let item of directory) {
+        assert(item[0] !== null, "Key: " + item[0]);
+        assert(item[1] !== null, "Value: " + item[1]);
+    }
+
+    // 可以使用内置的keys方法遍历所有key
+    for (let key of directory.keys()) {
+        assert(key !== null, "Key: " + key);
+        assert(directory.get(key) !== null, "Value: " + directory.get(key));
+    }
+
+    // 可以使用内置的values方法遍历所有value
+    for (let value of directory.values()) {
+        assert(value !== null, "Value: " + value);
+    }
+</script>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!-- 创建Set -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    // Set构造函数接收数组以初始化
+    const ninjas = new Set(["Kuma", "Hattori", "Yagyu", "Hattori"]);
+
+    assert(ninjas.has("Hattori"), "Hattori is in our set");
+    assert(ninjas.size === 3, "There are only three ninjas in our set!");
+
+    // 向集合中添加不存在的元素
+    assert(!ninjas.has("Yohsi"), "Yoshi is not in, yet..");
+    ninjas.add("Yoshi");
+    assert(ninjas.has("Yoshi"), "Yoshi is added");
+    assert(ninjas.size === 4, "There are four ninjas in our set!");
+
+    // 向集合中添加存在的元素将不起任何作用
+    assert(ninjas.has("Kuma"), "Kuma is already added");
+    ninjas.add("Kuma");
+    assert(ninjas.size === 4, "Adding Kuma again has no effect");
+
+    for (let ninja of ninjas) {
+        assert(ninja !== null, ninja);
+    }
+</script>
+
+</html>

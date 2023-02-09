@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!-- 通过对象模拟Set -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    function Set() {
+        let data = {};
+        let length = 0;
+
+        // 添加元素
+        this.add = item => {
+            if (this.has(item))
+                return;
+            data[item] = true;
+            length += 1;
+        }
+
+        // 添加元素
+        this.remove = item => {
+            if (!this.has(item))
+                return;
+            delete data[item];
+            length -= 1;
+        }
+
+        // 检查元素是否存在
+        this.has = item => {
+            return data[item] !== undefined;
+        }
+
+        // 集合长度
+        this.length = () => length;
+    }
+
+    const set = new Set();
+    set.add("test");
+    set.add("test");
+    report(set.length())
+    set.remove("test");
+    report(set.length())
+</script>
+
+</html>

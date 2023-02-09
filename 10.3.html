@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!-- 在运行时编译一个供稍后使用的正则表达式 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="ninja samurai"></div>
+    <div class="samurai ninja"></div>
+    <div></div>
+    <span class="samurai ninja ronin"></span>
+</body>
+<script src="./utils.js"></script>
+<script>
+    function findClassInElements(className, type) {
+        const elems = document.getElementsByTagName(type || "*");
+
+        // 使用传入的class名编译正则
+        const regs = new RegExp("(^|\\s)" + className + "(\\s|$)");
+
+        const results = [];
+
+        // 检验是否与正则匹配
+        for (let i = 0, length = elems.length; i < length; i++) {
+            if (regs.test(elems[i].className)) {
+                results.push(elems[i]);
+            }
+        }
+        return results;
+    }
+
+
+    assert(findClassInElements("ninja", "div").length === 2,
+        "The right amount of div ninjas was found");
+
+    assert(findClassInElements("ninja", "span").length === 1,
+        "The right amount of span ninjas was found");
+
+    assert(findClassInElements("ninja").length === 3,
+        "The right amount of ninjas was found");
+</script>
+
+</html>

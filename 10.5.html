@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!-- 全局匹配与局部匹配查找时的区别 -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script src="./utils.js"></script>
+<script>
+    const html="<div class='test'><b>Hello</b><i>world!</i></div>";
+    const results = html.match(/<(\/?)(\w+)([^>]*?)>/);
+
+    // 局部匹配正则
+    for (const res of results) {
+        report(res);
+    }
+
+    // 全局匹配正则
+    const all = html.match(/<(\/?)(\w+)([^>]*?)>/g);
+    for (const res of all) {
+        report(res);
+    }
+</script>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!-- 匹配所有字符，包括换行符 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    const html = "<b>Hello</b>\n<i>World!</i>";
+
+    // 不匹配换行
+    assert(/.*/.exec(html)[0] === "<b>Hello</b>",
+        "A normal capture doesn't handle endlines.");
+
+    // 使用空白字符匹配所有字符
+    assert(/[\S\s]*/.exec(html)[0] === html,
+        "Matching everything with a character set.")
+
+    // 第二种匹配所有字符的方法
+    assert(/(?:.|\s)*/.exec(html)[0]===html,
+        "Using a non-capturing group to match everything.");
+</script>
+
+</html>

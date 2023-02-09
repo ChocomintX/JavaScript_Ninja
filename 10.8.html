@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!-- 不产生捕获的分组 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    // 通过(?:pattern)使用被动子表达式
+    const pattern = /((?:ninja-)+)sword/;
+    const ninjas = "ninja-ninja-sword".match(pattern);
+
+    assert(ninjas.length === 2, "Only one capture was returned.");
+    assert(ninjas[1] === "ninja-ninja-",
+        "Matched both words, without any extra capture.")
+</script>
+
+</html>

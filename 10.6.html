@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!-- 使用exec方法进行捕获与全局搜索 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    const html = "<div class='test'><b>Hello</b> <i>world!</i></div>";
+    const tag = /<(\/?)(\w+)([^>]*?)>/g;
+
+    let match, num = 0;
+    while ((match = tag.exec(html)) !== null) {
+        assert(match.length === 4,
+            "Every match finds each tag and 3 captures.")
+        num++;
+    }
+
+    assert(num === 6, "3 opening and 3 closing tags found.")
+
+    // 局部匹配正则
+    for (const res of results) {
+        report(res);
+    }
+
+    // 全局匹配正则
+    const all = html.match(/<(\/?)(\w+)([^>]*?)>/g);
+    for (const res of all) {
+        report(res);
+    }
+</script>
+
+</html>

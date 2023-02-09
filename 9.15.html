@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!-- 将对象的key映射为HTML节点 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="firstElement"></div>
+    <div id="secondElement"></div>
+</body>
+<script src="./utils.js"></script>
+<script>
+    const firstElement = document.getElementById("firstElement");
+    const secondElement = document.getElementById("secondElement");
+
+    const map = {};
+
+    // 使用映射存储两个节点并验证是否正确
+    map[firstElement] = { data: "firstElement" };
+    assert(map[firstElement].data === "firstElement",
+        "The first element is correctly mapped");
+
+    map[secondElement] = { data: "secondElement" };
+    assert(map[secondElement].data === "secondElement",
+        "The second element is correctly mapped");
+
+    // 第一个元素的映射关系被覆盖
+    assert(map[firstElement].data === "firstElement",
+        "But now the firstElement is overriden!");
+</script>
+
+</html>
