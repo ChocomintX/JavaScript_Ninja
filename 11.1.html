@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!-- 模块模式 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    // 创建一个全局模块变量，赋值为立即实行函数的执行结果
+    const MouseCounterModule = function () {
+        // 创建模块私有变量与私有函数
+        let numClicks = 0;
+        const handleClick = () => {
+            alert(++numClicks);
+        }
+
+        // 返回一个对象，代表模块的接口。通过闭包，可以访问模块私有变量和方法
+        return {
+            countClicks: () => {
+                document.addEventListener("click", handleClick);
+            }
+        };
+    }();
+
+    assert(typeof MouseCounterModule.countClicks === "function",
+        "We can access module functionality");
+    
+    assert(typeof MouseCounterModule.numClicks === "undefined"
+        &&typeof MouseCounterModule.handleClick ==="undefined",
+        "Wen can't access internal module details");
+
+
+</script>
+
+</html>

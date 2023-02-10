@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!-- 导入模块默认导出的内容 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script type="module">
+    import InportedNinja from "./11.9.js"   // 导入默认导出的内容，不需要花括号，可任意指定名称
+    import { compareNinjas } from "./11.9.js"   // 导入指定的内容
+
+    const ninja1 = new InportedNinja("Yoshi");
+    const ninja2 = new InportedNinja("Hattori");
+
+    assert(ninja1 !== undefined && ninja2 !== undefined,
+        "We can create a couple of Ninjas");
+
+    assert(!compareNinjas(ninja1, ninja2),
+        "We can compare ninjas");
+</script>
+
+</html>

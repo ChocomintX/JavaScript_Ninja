@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!-- 使用AMD定义模块依赖于jQuery -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    // 使用define函数指定模块及其依赖，模块工厂函数会创建对应的模块
+    define('MouseCounterModule', ['jQuery'], $ => {
+        let numClicks = 0;
+        const handleClick = () => {
+            alert(++numClicks);
+        };
+
+        // 模块的公共接口
+        return {
+            countClicks: () => {
+                $(document).on("click", handleClick);
+            }
+        };
+    })
+</script>
+
+</html>

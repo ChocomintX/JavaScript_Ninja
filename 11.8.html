@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<!-- 导入在Ninja.js模块中导出的全部标识符 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script type="module">
+    import * as ninjaModule from "./11.6.js"   // 导入标识符
+
+    assert(ninjaModule.message === "Hello", "We can access the imported variable");
+    assert(ninjaModule.sayHiToNinja() === "Hello Yoshi",
+        "We can say hi to Yoshi from outside the module the");
+    // 不能直接访问未导出的模块变量
+    assert(typeof ninjaModule.ninja === "undefined",
+        "But we cannot access Yoshi directly");
+</script>
+
+</html>

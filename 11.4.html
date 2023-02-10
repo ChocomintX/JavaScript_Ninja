@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!-- 使用CommonJS定义模块 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    // MouseCountModule.js
+    const $ = require('jQuery');
+    let numClicks = 0;
+    const handleClick = () => {
+        alert(++numClicks);
+    };
+
+    module.exports = {
+        countClicks: () => {
+            $(document).on("click", handleClick);
+        }
+    }
+
+
+    // 在另一个文件中引用
+    const MouseCounterModule=require("MouseCountModule.js");
+    MouseCounterModule.countClicks();
+</script>
+
+</html>
