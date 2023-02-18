@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!-- 使用一个计时器来中断一个长时间运行的任务 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table>
+        <tbody></tbody>
+    </table>
+</body>
+<script src="./utils.js"></script>
+<script>
+    const rowcount = 20000;
+    const divideInto = 40;
+    const chunkSize = rowcount / divideInto;
+    let iteration = 0;
+    const table = document.getElementsByTagName("tbody")[0];
+    setTimeout(function generateRows() {
+        const base = chunkSize * iteration;
+        for (let i = 0; i < chunkSize; i++) {
+            const tr = document.createElement("tr");
+            for (let t = 0; t < 6; t++) {
+                const td = document.createElement("td");
+                td.appendChild(document.createTextNode((i + base) + "," + t + "," + iteration));
+                tr.appendChild(td);
+            }
+            table.appendChild(tr);
+        }
+        iteration++;
+        if (iteration < divideInto) {
+            setTimeout(generateRows, 0);
+        }
+    }, 0);  // 将超时延迟设置为0来表示下一次迭代应该“尽快”执行，但仍然必须在UI更新之后执行
+
+</script>
+
+</html>

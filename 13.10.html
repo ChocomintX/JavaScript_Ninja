@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!-- 使用自定义事件 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #whirlyThing {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <button type="button" id="clickMe">Start</button>
+    <img id="whirlyThing" src="./images/ninja-with-pole.png" alt="loading">
+</body>
+<script src="./utils.js"></script>
+<script>
+    function triggerEvent(target, eventType, eventDetail) {
+        // 使用CustomEvent构造器创建一个新事件
+        const event = new CustomEvent(eventType, {
+            detail: eventDetail  // 通过detail属性为事件对象传入信息
+        });
+        // 使用内置的dispatchEvent方法向指定的元素派发事件
+        target.dispatchEvent(event);
+    }
+
+    // 模拟ajax事件，传入URL作为额外信息
+    function performAjaxOperation() {
+        triggerEvent(document, "ajax-start", { url: "my-url" });
+        setTimeout(() => {
+            triggerEvent(document, "ajax-complete");
+        }, 5000);
+    }
+
+    // 当单击一个按钮时，ajax开始
+    const button = document.getElementById("clickMe");
+    button.addEventListener("click", () => {
+        performAjaxOperation();
+    });
+
+    document.addEventListener("ajax-start", e => {
+        document.getElementById("whirlyThing").style.display = "inline-block";
+        assert(e.detail.url === "my-url", "We can pass in event data");
+    })
+
+    document.addEventListener("ajax-complete", e => {
+        document.getElementById("whirlyThing").style.display = "none";
+    })
+</script>
+
+</html>

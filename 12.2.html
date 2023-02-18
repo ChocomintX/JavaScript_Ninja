@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!-- 将元素标签转为一系列DOM节点 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+</body>
+<script src="./utils.js"></script>
+<script>
+    function getNodes(htmlString, doc) {
+        const map = {
+            "<td": [3, "<table><tbody><tr>", "</tr></tbody></table>"],
+            "<th": [3, "<table><tbody><tr>", "</tr></tbody></table>"],
+            "<tr": [2, "<table><thead>", "</thead></table>"],
+            "<option": [1, "<select multiple>", "</select>"],
+            "<optgroup": [1, "<select multiple>", "</select>"],
+            "<legend": [1, "<fieldset>", "</fieldset>"],
+            "<thead": [1, "<table>", "</table>"],
+            "<tbody": [1, "<table>", "</table>"],
+            "<tfoot": [1, "<table>", "</table>"],
+            "<colgroup": [1, "<table>", "</table>"],
+            "<caption": [1, "<table>", "</table>"],
+            "<col": [2, "<table><tbody></tbody><colgroup>", "</colgroup></table>"]
+        }
+
+        const tagName = htmlString.match(/<\w+/);
+        let mapEntry = tagName ? map[tagName[0]] : null;
+        // 如果映射表中有匹配，使用匹配结果，否则构造空的“父”标记，深度设置为0
+        if (!mapEntry) { mapEntry = [0, " ", " "] };
+
+        // 创建用于包含新节点的div对象，默认为当前document对象
+        let div = (doc || document).createElement("div");
+        // 使用匹配得到的父级容器元素包装起传入的HTML字符串，并注入到新创建的div中
+        div.innerHTML = mapEntry[1] + htmlString + mapEntry[2];
+        // 参照映射关系定义的深度，向下遍历刚刚创建的DOM树，最终得到的应该是新创建的2元素
+        while (mapEntry[0]--) {
+            div = div.lastChild;
+        }
+        // 返回新创建的元素
+        return div.childNodes;
+    }
+    console.log(getNodes("<td>test</td><td>test2</td>"));
+    report("convert <td>test</td><td>test2</td> to " + getNodes("<td>test</td><td>test2</td>"));
+    report("getNodes('<td>test</td>')[0].nodeName = " + getNodes("<td>test</td>")[0].nodeName);
+</script>
+
+</html>

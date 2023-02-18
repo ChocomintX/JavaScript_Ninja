@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!-- 单一任务队列示例的伪代码 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="firstButton"></button>
+    <button id="secondButton"></button>
+</body>
+<script src="./utils.js"></script>
+<script>
+    const firstButton = document.getElementById("firstButton");
+    const secondButton = document.getElementById("secondButton");
+
+    firstButton.addEventListener("click",function firstHandler(){
+        // do sth for 8ms
+    });
+
+    secondButton.addEventListener("click",function secondHandler(){
+        // do sth for 5ms
+    });
+    // code that runs for 15ms
+    
+</script>
+
+</html>

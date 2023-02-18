@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!-- 连续一系列的读取和写入导致布局抖动 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="ninja">I'm a ninja</div>
+    <div id="samurai">I'm a samurai</div>
+    <div id="ronin">I'm a ronin</div>
+</body>
+<script src="./utils.js"></script>
+<script>
+    const ninja = document.getElementById("ninja");
+    const samurai = document.getElementById("samurai");
+    const ronin = document.getElementById("ronin");
+
+    const ninjaWidth = ninja.clientWidth;
+    ninja.style.width = ninjaWidth / 2 + "px";
+
+    const samuraiWidth = samurai.clientWidth;
+    samurai.style.width = samuraiWidth / 2 + "px";
+
+    const roninWidth = ronin.clientWidth;
+    ronin.style.width = roninWidth / 2 + "px";
+</script>
+
+</html>

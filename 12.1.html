@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!-- 确保自闭合元素被正确解释 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./utils.js"></script>
+<script>
+    // 使用正则表达式匹配我们不需要关心的元素名
+    const tags = /^(area|base|br|col|embed|hr|img|input|keygen|link|meniutem|meta|param|sourse|track|wbr)$/i;
+
+    function convert(html) {
+        return html.replace(/(<(\w+)[^>]*?)\/>/g, (all, front, tag) => {
+            return tags.test(tag) ? all : front + "></" + tag + ">";
+        });
+    }
+
+    report("convert <a/> to: " + convert("<a/>"));
+    report("convert <br/> to: " + convert("<br/>"));
+
+</script>
+
+</html>
